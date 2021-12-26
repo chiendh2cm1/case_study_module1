@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width">
+    <title>Flappy Bird</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="body__title">Flappy Bird</h1>
+    <canvas id="canvas" width="288" height="512"></canvas>
+    <br>
+    <br>
+    <p id="score">score:</p>
+    <button id="startGame" class="btn" onclick="startGame()">Start</button>
+</div>
+<img id="bird" style="display: none" src="images/bird.png" alt="">
+<img id="ground" style="display: none" src="images/fg.png" alt="">
+<img id="pipeNorth" style="display: none" src="images/pipeNorth.png" alt="">
+<img id="pipeSouth" style="display: none" src="images/pipeSouth.png" alt="">
+
+<script src="bird.js"></script>
+<script src="ground.js"></script>
+<script src="pipeNorth.js"></script>
+<script src="pipeSouth.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
