@@ -12,15 +12,19 @@
     <h1 class="body__title">Flappy Bird</h1>
     <canvas id="canvas" width="288" height="512"></canvas>
     <br>
-    <br>
-    <p id="score">score:</p>
+    <div id="display" class="display">
+        <img src="images/game_over_PNG58.png" alt="">
+        <button id="restartGame" class="btn" type="reset" onclick="restartGame()" >Restart</button>
+    </div>
     <button id="startGame" class="btn" onclick="startGame()">Start</button>
 </div>
 <img id="bird" style="display: none" src="images/bird.png" alt="">
 <img id="ground" style="display: none" src="images/fg.png" alt="">
 <img id="pipeNorth" style="display: none" src="images/pipeNorth.png" alt="">
 <img id="pipeSouth" style="display: none" src="images/pipeSouth.png" alt="">
-
+<audio loop id="musique" style="display: none">
+    <source src="sounds/DeVuong-DinhDungACV-7121634.mp3">
+</audio>
 <script src="bird.js"></script>
 <script src="ground.js"></script>
 <script src="pipeNorth.js"></script>

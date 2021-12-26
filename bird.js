@@ -18,7 +18,6 @@ class Bird {
 
     moveUp() {
         this.y -= 50;
-        fly.play();
     }
 
     moveDown() {

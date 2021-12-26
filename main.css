@@ -12,3 +12,33 @@ canvas {
     position: relative;
     font-family: "Comic Sans MS", "Lucida Sans Unicode", sans-serif;
 }
+#startGame {
+    position: absolute;
+    top: 300px;
+    left: 250px;
+    background-color: rgba(204, 204, 204, 0.9);
+}
+.btn {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: rgba(131, 131, 131, 0.4);
+    font-size: 18px;
+    font-family:  "Comic Sans MS", "Lucida Sans Unicode", sans-serif;
+    color: #732626;
+    min-width: 100px;
+}
+.display {
+    position: absolute;
+    display: none;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(151, 179, 236);
+    top: 150px;
+    left: 200px;
+    font-size: 20px;
+    border-radius: 30px;
+    box-shadow: 0 15px 20px rgba(133, 67, 67, 0.1);
+}
