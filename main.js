@@ -1,4 +1,4 @@
-
+let pipespacing;
 let score = 0;
 let gap = 120;
 let canvas = document.getElementById("canvas");
@@ -9,12 +9,14 @@ let pipeNorths = [new PipeNorth(canvas.clientWidth, -300)];
 let pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap)];
 let fly = new Audio();
 let scor = new Audio();
+let over = new Audio();
+over.src = "sounds/Nhac-chuong-game-over-www_tiengdong_com.mp3"
 fly.src = "sounds/fly.mp3";
 scor.src = "sounds/score.mp3";
 
 function musique() {
     document.getElementById("musique").play();
-    document.removeEventListener("keydown", musique);
+    window.removeEventListener("keydown", musique);
 }
 
 function radom(min, max) {
@@ -27,7 +29,12 @@ function drawPipes(i) {
     ground.drawGround();
     pipeNorths[i].moveLeft();
     pipeSouths[i].moveLeft();
-    if (pipeNorths[i].x === canvas.clientWidth / 2) {
+    if (score < 4) {
+        pipespacing = 100;
+    } else {
+        pipespacing = 170;
+    }
+    if (pipeNorths[i].x === pipespacing) {
         let Y = radom(-300, -138) // ống trên dài 378 tối đa để âm -300 đến -138.
         pipeNorths.push(new PipeNorth(canvas.clientWidth + 50, Y));
         pipeSouths.push(new PipeSouth(canvas.clientWidth + 50, Y + 380 + gap));
@@ -39,8 +46,8 @@ function start() {
     cleanCanvas()
     bird.drawBird();
     bird.moveDown();
-    document.addEventListener("keydown", move_up)
-    document.addEventListener("keydown", musique)
+    window.addEventListener("keydown", move_up)
+    window.addEventListener("keydown", musique)
     for (i = 0; i < pipeNorths.length; i++) {
         drawPipes(i);
         if (checkCollition(i) === 0) {
@@ -70,12 +77,13 @@ function checkCollition(i) {
         bird.x <= pipeSouths[i].x + pipeSouths[i].width - 3 &&
         bird.y + bird.height >= pipeSouths[i].y) {
         stopGame();
-        document.removeEventListener("keydown", move_up);
+        window.removeEventListener("keydown", move_up);
         return 0;
     }
 }
 
 function stopGame() {
+    over.play()
     document.getElementById("display").style.display = "block";
     document.getElementById("musique").pause();
 }
