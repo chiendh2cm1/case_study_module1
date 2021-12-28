@@ -14,7 +14,8 @@ class PipeSouth {
     drawPipeSouth() {
         ctx.drawImage(document.getElementById("pipeSouth"), this.x, this.y, this.width, this.height);
     }
+
     moveLeft() {
-        this.x -= 1;
-    }
+            this.x -=2;
+        }
 }

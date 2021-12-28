@@ -10,10 +10,12 @@ class PipeNorth {
         this.width = 50;
         this.height = 378;
     }
+
     drawPipeNorth() {
         ctx.drawImage(document.getElementById("pipeNorth"), this.x, this.y, this.width, this.height);
     }
+
     moveLeft() {
-        this.x -= 1;
-    }
+            this.x -= 2;
+        }
 }
