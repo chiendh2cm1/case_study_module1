@@ -12,6 +12,6 @@ class Ground {
     }
 
     drawGround() {
-        ctx.drawImage(document.getElementById("ground"), this.x, this.y, this.width, this.height);
+        ctx.drawImage(imgGround, this.x, this.y, this.width, this.height);
     }
 }

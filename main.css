@@ -1,5 +1,5 @@
 canvas {
-    background-image: url("images/hinh-anh-ve-dem.jpg");
+    background-image: url("images/nen cuoi.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     border: 1px solid #333;
@@ -14,9 +14,15 @@ canvas {
 }
 #startGame {
     position: absolute;
+    top: 300px;
+    left: 230px;
+    width: 150px ;
+    background: rgba(50, 224, 23, 0.96);
+}
+#restartGame {
     top: 250px;
     left: 250px;
-    background-color: rgba(223, 227, 238, 0.3);
+    background: rgb(97, 224, 33);
 }
 .btn {
     padding: 10px 15px;
@@ -27,17 +33,31 @@ canvas {
     background-color: rgba(109, 152, 149, 0);
     font-size: 30px;
     font-family:  "Comic Sans MS", "Lucida Sans Unicode", sans-serif;
-    color: rgba(5, 17, 42, 0.89);
+    color: rgb(16, 1, 1);
     min-width: 100px;
+    box-shadow: 5px 5px 5px #666;
+    -moz-box-shadow: 5px 5px 5px #666;
+    -webkit-box-shadow: 5px 5px 5px #2fb412;
+}
+.btn:hover {
+    background:tomato;
+    border-color: red;
 }
 .display {
     position: absolute;
-    display: none;
     width: 300px;
     background-color: rgba(121, 121, 173, 0);
-    top: 100px;
+    top: 20px;
     left: 150px;
     font-size: 20px;
     border-radius: 30px;
-    box-shadow: 0 15px 20px rgba(227, 150, 150, 0.1);
+}
+#scoreLate {
+    text-align: center;
+    font-size: 50px;
+    color: #0c32c7;
+    letter-spacing: .05em;
+    text-shadow: 4px 4px 0px #eeeaea, 7px 7px 0px rgba(182, 41, 41, 0.94);
+    height: 100px;
+    padding-top: 0px;
 }

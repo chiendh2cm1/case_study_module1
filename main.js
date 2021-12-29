@@ -1,12 +1,16 @@
+let imgBird = document.getElementById("bird");
+let imgGround = document.getElementById("ground");
+let imgNorth = document.getElementById("pipeNorth");
+let imgSouth = document.getElementById("pipeSouth");
 let score = 0;
 let maxScore = 0;
 let gap = 120;
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let bird = new Bird(40, canvas.clientHeight / 2)
-let ground = new Ground(0, canvas.clientHeight - 120, canvas.clientWidth, 120)
-let pipeNorths = [new PipeNorth(canvas.clientWidth, -300)];
-let pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap)];
+let bird = new Bird(40, canvas.clientHeight / 2, 50, 35);
+let ground = new Ground(0, canvas.clientHeight - 120, canvas.clientWidth, 120);
+let pipeNorths = [new PipeNorth(canvas.clientWidth, -300, 50, 378)];
+let pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap, 50, 378)];
 let fly = new Audio();
 let scor = new Audio();
 let over = new Audio();
@@ -25,22 +29,26 @@ function cleanCanvas() {
 
 
 function radom(min, max) {
-    return Math.floor(Math.random() * (max - min) + min); //radom từ min đến max.
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function move_up() {
+    bird.moveUp();
+    fly.play();
 }
 
 function drawPipes(i) {
     pipeNorths[i].drawPipeNorth();
     pipeSouths[i].drawPipeSouth();
-    ground.drawGround();
     pipeNorths[i].moveLeft();
     pipeSouths[i].moveLeft();
-    if (pipeNorths[i].x === canvas.clientWidth/2) {
-        let Y = radom(-300, -138) // ống trên dài 378 tối đa để âm -300 đến -138.
-        pipeNorths.push(new PipeNorth(canvas.clientWidth + 50, Y));
-        pipeSouths.push(new PipeSouth(canvas.clientWidth + 50, Y + 380 + gap));
+    if (pipeNorths[i].x === canvas.clientWidth / 2) {
+        let pipeY = radom(-300, -138)
+        pipeNorths.push(new PipeNorth(canvas.clientWidth + 50, pipeY, 50, 378));
+        pipeSouths.push(new PipeSouth(canvas.clientWidth + 50, pipeY + 380 + gap, 50, 378));
     }
+    ground.drawGround();
 }
-
 
 function start() {
     cleanCanvas()
@@ -53,11 +61,11 @@ function start() {
         if (checkCollition(i) === 0) {
             return;
         }
-        if (pipeNorths[i].x === bird.x - 40) {
+        if (pipeNorths[i].x === bird.x - 50) {
             score = score + 1;
             scor.play();
         }
-        if (pipeNorths[i].x === 0) {
+        if (pipeNorths[i].width === 0) {
             pipeNorths.splice(0, 1);
             pipeSouths.splice(0, 1);
         }
@@ -66,38 +74,24 @@ function start() {
     ctx.fillStyle = "black";
     ctx.font = " 20px Comic Sans MS";
     ctx.fillText("Score : " + score, 20, canvas.clientHeight - 50);
-    ctx.fillText("Hight : " + maxScore, 300, canvas.clientHeight - 50);
+    ctx.fillText("Hight : " + localStorage.getItem("hight"), 300, canvas.clientHeight - 50);
     requestAnimationFrame(start);
 }
 
 function checkCollition(i) {
     if (
-        bird.y <= 0 || bird.y + bird.height - 2 >= ground.y ||
-        (
-            bird.x + bird.width - 2 >= pipeNorths[i].x &&
-            bird.x <= pipeNorths[i].x + pipeNorths[i].width - 3)
-        &&
-
-        (
-            bird.y + 2 <= pipeNorths[i].y + pipeNorths[i].height ||
-            bird.y + bird.height - 2 >= pipeSouths[i].y
-        )
+        bird.y <= 0 ||
+        bird.y + bird.height - 4 >= ground.y ||
+        (bird.x + bird.width - 4 >= pipeNorths[i].x && bird.x <= pipeNorths[i].x + pipeNorths[i].width - 4 && bird.y + 4 <= pipeNorths[i].y + pipeNorths[i].height) ||
+        (bird.x + bird.width - 4 >= pipeSouths[i].x && bird.x <= pipeSouths[i].x + pipeSouths[i].width - 4 && bird.y + bird.height - 4 >= pipeSouths[i].y)
     ) {
-        stopGame();
+        over.play()
+        document.getElementById("scoreLate").innerText = maxScore;
+        document.getElementById("display").style.display = "block";
+        document.getElementById("musique").pause();
         window.removeEventListener("keydown", move_up);
         return 0;
     }
-}
-
-function stopGame() {
-    over.play()
-    document.getElementById("display").style.display = "block";
-    document.getElementById("musique").pause();
-}
-
-function move_up() {
-    bird.moveUp();
-    fly.play();
 }
 
 function startGame() {
@@ -107,11 +101,13 @@ function startGame() {
 
 function restartGame() {
     score = 0;
-    bird = new Bird(40, canvas.clientHeight / 2)
-    pipeNorths = [new PipeNorth(canvas.clientWidth, -300)];
-    pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap)];
+    bird = new Bird(40, canvas.clientHeight / 2, 50, 35)
+    pipeNorths = [new PipeNorth(canvas.clientWidth, -300, 50, 378)];
+    pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap, 50, 378)];
     document.getElementById("display").style.display = "none";
+    localStorage.setItem("hight", maxScore);//(tạo bộ nhớ nhỏ trên web); lưu lại maxScore khi load trang.
     start();
+
 }
 
 function hightScore() {

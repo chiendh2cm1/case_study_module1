@@ -4,20 +4,20 @@ class Bird {
     width;
     height;
 
-    constructor(x, y) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.width = 38;
-        this.height = 26;
+        this.width = width;//50
+        this.height = height;//35
     }
 
     drawBird() {
-        ctx.drawImage(document.getElementById("bird"), this.x, this.y, this.width, this.height);
+        ctx.drawImage(imgBird, this.x, this.y, this.width, this.height);
 
     }
 
     moveUp() {
-        this.y -= 50;
+        this.y -= 40;
     }
 
     moveDown() {

@@ -9,16 +9,17 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="body__title">Flappy Bird</h1>
+    <h1>Flappy Bird</h1>
     <canvas id="canvas" width="400" height="512"></canvas>
     <br>
-    <div id="display" class="display">
-            <img src="images/gameover.png" alt="" style="" id="overgame">
-        <button id="restartGame" class="btn" type="reset" onclick="restartGame()" >Restart</button>
+    <div id="display" class="display" style="display: none">
+        <h2 id="scoreLate"><span></span></h2>
+        <img src="images/gameover.png" alt="" style="" id="overgame">
+        <button id="restartGame" class="btn" onclick="restartGame()">Restart</button>
     </div>
     <button id="startGame" class="btn" onclick="startGame()">Start</button>
 </div>
-<img id="bird" style="display: none" src="images/birdzz.png" alt="">
+<img id="bird" style="display: none" src="images/bird.png" alt="">
 <img id="ground" style="display: none" src="images/fg.png" alt="">
 <img id="pipeNorth" style="display: none" src="images/pipeNorth.png" alt="">
 <img id="pipeSouth" style="display: none" src="images/pipeSouth.png" alt="">

@@ -4,15 +4,15 @@ class PipeNorth {
     width;
     height;
 
-    constructor(x, y) {
+    constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
-        this.width = 50;
-        this.height = 378;
+        this.width = width;
+        this.height = height;
     }
 
     drawPipeNorth() {
-        ctx.drawImage(document.getElementById("pipeNorth"), this.x, this.y, this.width, this.height);
+        ctx.drawImage(imgNorth, this.x, this.y, this.width, this.height);
     }
 
     moveLeft() {
