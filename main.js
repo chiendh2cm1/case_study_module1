@@ -54,11 +54,11 @@ function start() {
     cleanCanvas()
     bird.drawBird();
     bird.moveDown();
-    window.addEventListener("keydown", move_up)
-    window.addEventListener("keydown", musique)
+    window.addEventListener("click", move_up)
+    window.addEventListener("click", musique)
     for (i = 0; i < pipeNorths.length; i++) {
         drawPipes(i);
-        if (checkCollition(i) === 0) {
+        if (checkCollition(i) === false) {
             return;
         }
         if (pipeNorths[i].x === bird.x - 50) {
@@ -90,7 +90,7 @@ function checkCollition(i) {
         document.getElementById("display").style.display = "block";
         document.getElementById("musique").pause();
         window.removeEventListener("keydown", move_up);
-        return 0;
+        return false;
     }
 }
 

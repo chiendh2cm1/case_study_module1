@@ -8,7 +8,7 @@ class PipeSouth {
         this.x = x;
         this.y = y;
         this.width = width;//50
-        this.height = 378;//378
+        this.height = height;//378
     }
 
     drawPipeSouth() {
@@ -16,6 +16,10 @@ class PipeSouth {
     }
 
     moveLeft() {
-            this.x -=2;
+            if (score < 10) {
+                this.x -= 2
+            }else {
+                this.x -= 2.5
+            }
         }
 }

@@ -3,7 +3,6 @@ class Bird {
     y;
     width;
     height;
-
     constructor(x, y, width, height) {
         this.x = x;
         this.y = y;
