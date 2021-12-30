@@ -54,8 +54,8 @@ function start() {
     cleanCanvas()
     bird.drawBird();
     bird.moveDown();
-    window.addEventListener("click", move_up)
-    window.addEventListener("click", musique)
+    window.addEventListener("keydown", move_up)
+    window.addEventListener("keydown", musique)
     for (i = 0; i < pipeNorths.length; i++) {
         drawPipes(i);
         if (checkCollition(i) === false) {
