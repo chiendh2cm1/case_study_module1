@@ -74,7 +74,7 @@ function start() {
     ctx.fillStyle = "black";
     ctx.font = " 20px Comic Sans MS";
     ctx.fillText("Score : " + score, 20, canvas.clientHeight - 50);
-    ctx.fillText("Hight : " + localStorage.getItem("hight"), 300, canvas.clientHeight - 50);
+    ctx.fillText("High : " + localStorage.getItem("hight"), 300, canvas.clientHeight - 50);
     requestAnimationFrame(start);
 }
 
