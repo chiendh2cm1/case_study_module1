@@ -1,7 +1,7 @@
 let imgBird = document.getElementById("bird");
 let imgGround = document.getElementById("ground");
-let imgNorth = document.getElementById("pipeNorth");
-let imgSouth = document.getElementById("pipeSouth");
+let imgpipeNorth = document.getElementById("pipeNorth");
+let imgpipeSouth = document.getElementById("pipeSouth");
 let score = 0;
 let maxScore = 0;
 let gap = 120;
@@ -9,7 +9,7 @@ let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
 let bird = new Bird(40, canvas.clientHeight / 2, 50, 35);
 let ground = new Ground(0, canvas.clientHeight - 120, canvas.clientWidth, 120);
-let pipeNorths = [new PipeNorth(canvas.clientWidth, -300, 50, 378)];
+let pipeNorths = [new PipeNorth(canvas.clientWidth, -120, 50, 242)];
 let pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap, 50, 378)];
 let fly = new Audio();
 let scor = new Audio();
@@ -43,15 +43,15 @@ function drawPipes(i) {
     pipeNorths[i].moveLeft();
     pipeSouths[i].moveLeft();
     if (pipeNorths[i].x === canvas.clientWidth / 2) {
-        let pipeY = radom(-300, -138)
+        let pipeY = radom(-250, -150)
         pipeNorths.push(new PipeNorth(canvas.clientWidth + 50, pipeY, 50, 378));
-        pipeSouths.push(new PipeSouth(canvas.clientWidth + 50, pipeY + 380 + gap, 50, 378));
+        pipeSouths.push(new PipeSouth(canvas.clientWidth + 50, pipeY + 378 + gap, 50, 378));
     }
     ground.drawGround();
 }
 
 function start() {
-    cleanCanvas()
+    cleanCanvas();
     bird.drawBird();
     bird.moveDown();
     window.addEventListener("keydown", move_up)
@@ -85,7 +85,7 @@ function checkCollition(i) {
         (bird.x + bird.width - 4 >= pipeNorths[i].x && bird.x <= pipeNorths[i].x + pipeNorths[i].width - 4 && bird.y + 4 <= pipeNorths[i].y + pipeNorths[i].height) ||
         (bird.x + bird.width - 4 >= pipeSouths[i].x && bird.x <= pipeSouths[i].x + pipeSouths[i].width - 4 && bird.y + bird.height - 4 >= pipeSouths[i].y)
     ) {
-        over.play()
+        over.play();
         document.getElementById("scoreLate").innerText = maxScore;
         document.getElementById("display").style.display = "block";
         document.getElementById("musique").pause();
@@ -102,7 +102,7 @@ function startGame() {
 function restartGame() {
     score = 0;
     bird = new Bird(40, canvas.clientHeight / 2, 50, 35)
-    pipeNorths = [new PipeNorth(canvas.clientWidth, -300, 50, 378)];
+    pipeNorths = [new PipeNorth(canvas.clientWidth, -120, 50, 242)];
     pipeSouths = [new PipeSouth(canvas.clientWidth, pipeNorths[0].y + pipeNorths[0].height + gap, 50, 378)];
     document.getElementById("display").style.display = "none";
     localStorage.setItem("hight", maxScore);//(tạo bộ nhớ nhỏ trên web); lưu lại maxScore khi load trang.

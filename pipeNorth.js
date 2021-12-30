@@ -13,14 +13,14 @@ class PipeNorth {
     }
 
     drawPipeNorth() {
-        ctx.drawImage(imgNorth, this.x, this.y, this.width, this.height);
+        ctx.drawImage(imgpipeNorth, this.x, this.y, this.width, this.height);
     }
 
     moveLeft() {
             if (score < 10) {
-                this.x -= 2
+                this.x -= 2;
             } else {
-                this.x -= 2.5
+                this.x -= 2.5;
             }
         }
 }
