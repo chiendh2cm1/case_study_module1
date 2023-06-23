@@ -56,6 +56,7 @@ function start() {
     bird.moveDown();
     window.addEventListener("keydown", move_up)
     window.addEventListener("keydown", musique)
+     ctx.fillText("High : " + 0, 300, canvas.clientHeight - 50);
     for (i = 0; i < pipeNorths.length; i++) {
         drawPipes(i);
         if (checkCollition(i) === false) {
